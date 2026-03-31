@@ -42,7 +42,7 @@ To use Isaac Lab, specify the argument `--engine_config data/engines/isaac_lab_e
 <details>
 <summary>Newton</summary>
 
-Install [Newton](https://newton-physics.github.io/newton/guide/installation.html). This framework has been tested with `447d6ed874aa816e993c612e345ed5caa5f52687`.
+Install [Newton](https://newton-physics.github.io/newton/guide/installation.html). This framework has been tested with `v1.0.0`.
 
 To use Newton, specify the argument `--engine_config data/engines/newton_engine.yaml` when running the code.
 </details>

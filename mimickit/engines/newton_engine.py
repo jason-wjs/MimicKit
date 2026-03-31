@@ -1077,7 +1077,7 @@ class NewtonEngine(engine.Engine):
         return
     
     def _update_contact_sensors(self):
-        self._ground_contact_sensor.update(self._contacts)
+        self._ground_contact_sensor.update(self._sim_state.raw_state, self._contacts)
         return
     
     def _visualize(self):
