@@ -1061,12 +1061,17 @@ class IsaacLabEngine(engine.Engine):
         for obj_id in range(objs_per_env):
             sensor = self._ground_contact_sensors[obj_id]
             if (sensor is not None):
-                body_names = sensor.body_names
-                body_common2sim = [self.find_obj_body_id(obj_id, name) for name in body_names]
-                body_sim2common = [body_common2sim.index(i) for i in range(len(body_common2sim))]
+                obj_type = self.get_obj_type(obj_id)
+                if (obj_type == engine.ObjType.articulated):
+                    body_names = sensor.body_names
+                    body_common2sim = [self.find_obj_body_id(obj_id, name) for name in body_names]
+                    body_sim2common = [body_common2sim.index(i) for i in range(len(body_common2sim))]
 
-                body_sim2common = torch.tensor(body_sim2common, device=self._device, dtype=torch.long)
-                self._sensor_body_order_sim2common.append(body_sim2common)
+                    body_sim2common = torch.tensor(body_sim2common, device=self._device, dtype=torch.long)
+                    self._sensor_body_order_sim2common.append(body_sim2common)
+                else:
+                    body_sim2common = torch.tensor([0], device=self._device, dtype=torch.long)
+                    self._sensor_body_order_sim2common.append(body_sim2common)
             else:
                 self._sensor_body_order_sim2common.append(None)
         return
